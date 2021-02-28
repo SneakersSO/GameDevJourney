@@ -10,6 +10,7 @@ Game::Game()
 	,mIsRunning(true)
 	,mTicksCount(0)
 	,mPaddleDir(0)
+	,mPaddle2Dir(0)
 {
 
 }
@@ -60,6 +61,9 @@ bool Game::Initialize()
 
 	mPaddlePos.x = 10.0f;
 	mPaddlePos.y = 768.0f / 2.0f;
+
+	mPaddle2Pos.x = 1024.0f - thickness;
+	mPaddle2Pos.y = 768.0f / 2.0f;
 
 	mBallVel.x = -200.0f;
 	mBallVel.y = 235.0f;
@@ -123,6 +127,7 @@ void Game::ProcessInput()
 	}
 
 	mPaddleDir = 0;
+	mPaddle2Dir = 0;
 
 	if (state[SDL_SCANCODE_W])
 	{
@@ -132,6 +137,16 @@ void Game::ProcessInput()
 	if (state[SDL_SCANCODE_S])
 	{
 		mPaddleDir += 1;
+	}
+
+	if (state[SDL_SCANCODE_I])
+	{
+		mPaddle2Dir -= 1;
+	}
+
+	if (state[SDL_SCANCODE_K])
+	{
+		mPaddle2Dir += 1;
 	}
 }
 
@@ -155,8 +170,7 @@ void Game::UpdateGame()
 	// Update ticks counts (for next frame)
 	mTicksCount = SDL_GetTicks();
 
-	//TODO: Update objects in game world as function of delta time!
-
+	// Update paddle position based on direction
 	if (mPaddleDir != 0)
 	{
 		mPaddlePos.y += mPaddleDir * 300.0f * deltaTime;
@@ -170,6 +184,23 @@ void Game::UpdateGame()
 		else if (mPaddlePos.y > (768.0f - paddleH / 2.0f - thickness))
 		{
 			mPaddlePos.y = 768.0f - paddleH / 2.0f - thickness;
+		}
+	}
+
+	//Update paddle 2 position based on direction
+	if (mPaddle2Dir != 0)
+	{
+		mPaddle2Pos.y += mPaddle2Dir * 300.0f * deltaTime;
+
+		// Make sure paddle doesn't move off screen!
+		if (mPaddle2Pos.y < (paddleH / 2.0f + thickness))
+		{
+			mPaddle2Pos.y = paddleH / 2.0f + thickness;
+		}
+
+		else if (mPaddle2Pos.y > (768.0f - paddleH / 2.0f - thickness))
+		{
+			mPaddle2Pos.y = 768.0f - paddleH / 2.0f - thickness;
 		}
 	}
 
@@ -192,14 +223,14 @@ void Game::UpdateGame()
 		mBallVel.x *= -1;
 	}
 
-	float diff = mBallPos.y - mPaddlePos.y;
+	float diff1 = mBallPos.y - mPaddlePos.y;
 
 	//Take absolute value of difference
-	diff = (diff > 0.0f) ? diff : -diff;
+	diff1 = (diff1 > 0.0f) ? diff1 : -diff1;
 
 	if (
 		// Our y-difference is small enough
-		diff <= paddleH / 2.0f &&
+		diff1 <= paddleH / 2.0f &&
 		//Ball is at the correct x-position
 		mBallPos.x <= 25.0f && mBallPos.x >= 20.f &&
 		//The ball is moving to the left
@@ -207,6 +238,19 @@ void Game::UpdateGame()
 	{
 		mBallVel.x *= -1.0f;
 	}
+
+	float diff2 = mBallPos.y - mPaddle2Pos.y;
+
+	diff2 = (diff2 > 0.0f) ? diff2 : -diff2;
+
+	if (
+		diff2 <= paddleH / 2.0f &&
+		mBallPos.x <= 1024 - 20.0f && mBallPos.x >= 20.f &&
+		mBallVel.x > 0.0f)
+	{
+		mBallVel.x *= -1.0f;
+	}
+	
 
 }
 
@@ -240,11 +284,11 @@ void Game::GenerateOutput()
 	SDL_RenderFillRect(mRenderer, &wall);
 
 	//Right Wall
-	wall.w = thickness;
+	/*wall.w = thickness;
 	wall.h = 1024;
 	wall.y = 0;
 	wall.x = 1024 - thickness;
-	SDL_RenderFillRect(mRenderer, &wall);
+	SDL_RenderFillRect(mRenderer, &wall);*/ //removed for exercise
 
 	SDL_Rect ball{
 		static_cast<int>(mBallPos.x - thickness / 2),
@@ -261,9 +305,16 @@ void Game::GenerateOutput()
 		thickness,
 		static_cast<int>(paddleH)
 	};
-
 	SDL_RenderFillRect(mRenderer, &paddle);
 
+	//Put in as exercise 1.1
+	SDL_Rect paddle2{
+		static_cast<int>(mPaddle2Pos.x),
+		static_cast<int>(mPaddle2Pos.y - paddleH / 2),
+		thickness,
+		static_cast<int>(paddleH)
+	};
+	SDL_RenderFillRect(mRenderer, &paddle2);
 
 	SDL_RenderPresent(mRenderer);
 }

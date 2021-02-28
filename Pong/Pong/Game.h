@@ -57,5 +57,9 @@ class Game
 
 		Vector2 mBallVel;
 
+		Vector2 mPaddle2Pos;
+
+		int mPaddle2Dir;
+
 
 };
