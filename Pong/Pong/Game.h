@@ -1,10 +1,17 @@
 #pragma once
 #include "SDL.h"
+#include <vector>
 
 struct Vector2
 {
 	float x;
 	float y;
+};
+
+struct Ball
+{
+	Vector2 pos;
+	Vector2 vel;
 };
 
 class Game
@@ -61,5 +68,6 @@ class Game
 
 		int mPaddle2Dir;
 
+		std::vector<Ball> mBalls;
 
 };
