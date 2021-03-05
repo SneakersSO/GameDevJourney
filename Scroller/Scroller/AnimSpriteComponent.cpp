@@ -9,13 +9,26 @@ AnimSpriteComponent::AnimSpriteComponent(Actor* owner, int drawOrder)
 
 }
 
-void AnimSpriteComponent::SetAnimTextures(const std::vector<SDL_Texture*>& textures)
+void AnimSpriteComponent::SetAnimTextures(const std::string animName, const Anim animData)
 {
-	mAnimTextures = textures;
-	if (mAnimTextures.size() > 0)
+	mAnims.emplace(animName, animData);
+}
+
+
+void AnimSpriteComponent::SetActiveAnim(std::string animName)
+{
+	auto iter = mAnims.find(animName);
+
+	if (iter != mAnims.end())
 	{
-		mCurrFrame = 0.0f;
-		SetTexture(mAnimTextures[0]);
+		mAnimTextures = iter->second.animTextures;
+
+		if (mAnimTextures.size() > 0)
+		{
+			mCurrFrame = 0.0f;
+			SetTexture(mAnimTextures[0]);
+			SetCurrentAnim(iter->second);
+		}
 	}
 }
 
@@ -29,13 +42,28 @@ void AnimSpriteComponent::Update(float deltaTime)
 		// and delta time
 		mCurrFrame += mAnimFPS * deltaTime;
 
-		// Wrap current frame if needed
-		while (mCurrFrame >= mAnimTextures.size())
+		if (GetCurrentAnim().bIsLooping)
 		{
-			mCurrFrame -= mAnimTextures.size();
+			// Wrap current frame if needed
+			while (mCurrFrame >= mAnimTextures.size())
+			{
+				mCurrFrame -= mAnimTextures.size();
+			}
+
+			// Set the current texture
+			SetTexture(mAnimTextures[static_cast<int>(mCurrFrame)]);
+
 		}
 
-		// Set the current texture
-		SetTexture(mAnimTextures[static_cast<int>(mCurrFrame)]);
+		else if (!GetCurrentAnim().bIsLooping && mCurrFrame >= mAnimTextures.size())
+		{
+			SetActiveAnim(mResetAnim);
+		}
+
+		else
+		{
+			SetTexture(mAnimTextures[static_cast<int>(mCurrFrame)]);
+		}
+
 	}
 }

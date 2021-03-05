@@ -7,6 +7,7 @@
 #include "SpriteComponent.h"
 #include "BGSpriteComponent.h"
 #include "Math.h"
+#include "Skeleton.h"
 
 
 Game::Game()
@@ -179,7 +180,8 @@ void Game::ProcessInput()
 	}
 
 	//Process ship input
-	mShip->ProcessKeyboard(state);
+	//mShip->ProcessKeyboard(state);
+	mSkeleton->ProcessKeyboard(state);
 }
 
 void Game::UpdateGame()
@@ -250,9 +252,13 @@ void Game::GenerateOutput()
 void Game::LoadData()
 {
 	// Create player's ship
-	mShip = new Ship(this);
+	/*mShip = new Ship(this);
 	mShip->SetPosition(Vector2(100.0f, 384.0f));
-	mShip->SetScale(1.5f);
+	mShip->SetScale(1.5f);*/
+
+	mSkeleton = new Skeleton(this);
+	mSkeleton->SetPosition(Vector2(100.0f, 384.0f));
+	mSkeleton->SetScale(1.0f);
 
 	// Create actor for the background (this doesn't need a subclass)
 	Actor* temp = new Actor(this);

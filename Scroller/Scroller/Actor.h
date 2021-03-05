@@ -39,8 +39,7 @@ public:
 	void SetScale(float scale) { mScale = scale; }
 
 	float GetRot() { return mRotation; };
-	void SetRot(float rotation) { mRotation = rotation;
-	}
+	void SetRot(float rotation) { mRotation = rotation; }
 	Game* GetGame() { return mGame; }
 
 	std::vector<class Component*> GetComponents() { return mComponents; };

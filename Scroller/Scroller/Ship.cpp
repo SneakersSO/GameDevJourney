@@ -10,13 +10,17 @@ Ship::Ship(Game* game)
 {
 	AnimSpriteComponent* asc = new AnimSpriteComponent(this);
 
-	std::vector<SDL_Texture*> anims = {
+	Anim flying;
+	flying.bIsLooping = true;
+	flying.animTextures = {
 		game->GetTexture("Assets/Ship01.png"),
 		game->GetTexture("Assets/Ship02.png"),
 		game->GetTexture("Assets/Ship03.png"),
 		game->GetTexture("Assets/Ship04.png"),
 	};
-	asc->SetAnimTextures(anims);
+	asc->SetAnimTextures("flying", flying);
+
+	asc->SetActiveAnim("flying");
 }
 
 void Ship::UpdateActor(float deltaTime)
