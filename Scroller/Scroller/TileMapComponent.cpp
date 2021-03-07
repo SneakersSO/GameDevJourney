@@ -70,7 +70,7 @@ void TileMapComponent::Draw(SDL_Renderer* renderer)
 			rDest.h = mTileHeight;
 
 			rDest.x = mTileWidth * (mapIndex % row.size());
-			rDest.y = mTileHeight * floor(mapIndex / row.size());
+			rDest.y = mTileHeight * floor(mapIndex  / row.size());
 
 			SDL_RenderCopyEx(
 				renderer,
