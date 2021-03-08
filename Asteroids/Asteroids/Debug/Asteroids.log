@@ -1,0 +1,11 @@
+﻿  Actor.cpp
+  AnimSpriteComponent.cpp
+  BGSpriteComponent.cpp
+  Component.cpp
+  Game.cpp
+  Main.cpp
+  Math.cpp
+  Ship.cpp
+  SpriteComponent.cpp
+  Generating Code...
+  Asteroids.vcxproj -> C:\Users\nevet\Documents\Programming\GameDevJourney\Asteroids\Debug\Asteroids.exe

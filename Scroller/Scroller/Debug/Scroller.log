@@ -1,2 +1,10 @@
-﻿  Ship.cpp
+﻿  Actor.cpp
+  AnimSpriteComponent.cpp
+  BGSpriteComponent.cpp
+  Game.cpp
+  Main.cpp
+  Ship.cpp
+  SpriteComponent.cpp
+  Generating Code...
+  LINK : C:\Users\nevet\Documents\Programming\GameDevJourney\Scroller\Debug\Scroller.exe not found or not built by the last incremental link; performing full link
   Scroller.vcxproj -> C:\Users\nevet\Documents\Programming\GameDevJourney\Scroller\Debug\Scroller.exe
