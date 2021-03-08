@@ -2,6 +2,7 @@
 #include "SpriteComponent.h"
 #include <vector>
 #include <string>
+#include "Math.h"
 
 class TileMapComponent : SpriteComponent
 {

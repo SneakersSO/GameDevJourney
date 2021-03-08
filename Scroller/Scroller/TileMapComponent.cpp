@@ -42,6 +42,8 @@ void TileMapComponent::ReadTileMapCSV()
 			row.clear();
 		}
 
+		tileCSV.close();
+
 	}
 }
 
@@ -54,8 +56,11 @@ void TileMapComponent::Draw(SDL_Renderer* renderer)
 	{
 		for (auto col : row)
 		{
-			mapIndex++;
-			if (col < 0) continue;
+			if (col < 0)
+			{
+				mapIndex++;
+				continue;
+			}
 
 			SDL_Rect rSrc;
 			rSrc.w = mTileWidth;
@@ -69,8 +74,8 @@ void TileMapComponent::Draw(SDL_Renderer* renderer)
 			rDest.w = mTileWidth;
 			rDest.h = mTileHeight;
 
-			rDest.x = mTileWidth * (mapIndex % row.size());
-			rDest.y = mTileHeight * floor(mapIndex  / row.size());
+			rDest.x = mTileWidth * floor(mapIndex % row.size());
+			rDest.y = mTileHeight * floor(mapIndex / row.size());
 
 			SDL_RenderCopyEx(
 				renderer,
@@ -80,6 +85,8 @@ void TileMapComponent::Draw(SDL_Renderer* renderer)
 				-Math::ToDegrees(mOwner->GetRot()),
 				nullptr,
 				SDL_FLIP_NONE);
+
+			mapIndex++;
 		}
 	}
 
