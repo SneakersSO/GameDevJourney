@@ -10,6 +10,7 @@
 Laser::Laser(Game* game)
 	:Actor(game)
 	, mDeathTimer(1.0f)
+	, mLifeTime(.68f)
 {
 	// Create a sprite component
 	SpriteComponent* sc = new SpriteComponent(this);
@@ -38,5 +39,12 @@ void Laser::UpdateActor(float deltaTime)
 			ast->SetState(EDead);
 			break;
 		}
+	}
+
+	mLifeTime -= deltaTime;
+
+	if (mLifeTime <= 0.0f)
+	{
+		SetState(EDead);
 	}
 }

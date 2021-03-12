@@ -10,4 +10,5 @@ public:
 private:
 	class CircleComponent* mCircle;
 	float mDeathTimer;
+	float mLifeTime;
 };

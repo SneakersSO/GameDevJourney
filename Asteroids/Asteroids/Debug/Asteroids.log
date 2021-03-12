@@ -1,10 +1,2 @@
-﻿  Actor.cpp
-  Asteroid.cpp
-  CircleComponent.cpp
-  Game.cpp
-  Laser.cpp
-  Main.cpp
-  Ship.cpp
-  SpriteComponent.cpp
-  Generating Code...
+﻿  Laser.cpp
   Asteroids.vcxproj -> C:\Users\nevet\Documents\Programming\GameDevJourney\Asteroids\Debug\Asteroids.exe
