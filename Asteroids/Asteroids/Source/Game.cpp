@@ -8,6 +8,7 @@
 #include "Math.h"
 #include "Asteroid.h"
 #include "Random.h"
+#include <iostream>
 
 
 Game::Game()
@@ -70,6 +71,9 @@ bool Game::Initialize()
 	LoadData();
 
 	mTicksCount = SDL_GetTicks();
+
+	float angle = Math::Atan2(0.1644f, 0.9864f);
+	std::cout << angle;
 
 	return true;
 }
