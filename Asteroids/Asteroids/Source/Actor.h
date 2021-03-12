@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Math.h"
+#include <cstdint>
 
 class Actor
 {
@@ -39,9 +40,10 @@ public:
 	void SetScale(float scale) { mScale = scale; }
 
 	float GetRot() { return mRotation; };
-	void SetRot(float rotation) { mRotation = rotation;
-	}
+	void SetRot(float rotation) { mRotation = rotation; }
 	Game* GetGame() { return mGame; }
+
+	Vector2 GetForward() const { return Vector2(Math::Cos(mRotation), -Math::Sin(mRotation)); }
 
 	std::vector<class Component*> GetComponents() { return mComponents; };
 
@@ -49,6 +51,10 @@ public:
 	// Add/remove components
 	void AddComponent(class Component* component);
 	void RemoveComponent(class Component* component);
+
+	void ProcessInput(const uint8_t* keyState);
+
+	virtual void ActorInput(const uint8_t* keyState);
 
 private:
 

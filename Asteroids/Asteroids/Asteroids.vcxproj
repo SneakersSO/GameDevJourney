@@ -142,25 +142,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="AnimSpriteComponent.cpp" />
-    <ClCompile Include="BGSpriteComponent.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="Source\Actor.cpp" />
+    <ClCompile Include="Source\AnimSpriteComponent.cpp" />
+    <ClCompile Include="Source\Asteroid.cpp" />
+    <ClCompile Include="Source\BGSpriteComponent.cpp" />
+    <ClCompile Include="Source\CircleComponent.cpp" />
+    <ClCompile Include="Source\Component.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\InputComponent.cpp" />
+    <ClCompile Include="Source\Laser.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Math.cpp" />
+    <ClCompile Include="Source\MoveComponent.cpp" />
+    <ClCompile Include="Source\Random.cpp" />
+    <ClCompile Include="Source\Ship.cpp" />
+    <ClCompile Include="Source\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h" />
-    <ClInclude Include="AnimSpriteComponent.h" />
-    <ClInclude Include="BGSpriteComponent.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="Ship.h" />
-    <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="Source\Actor.h" />
+    <ClInclude Include="Source\AnimSpriteComponent.h" />
+    <ClInclude Include="Source\Asteroid.h" />
+    <ClInclude Include="Source\BGSpriteComponent.h" />
+    <ClInclude Include="Source\CircleComponent.h" />
+    <ClInclude Include="Source\Component.h" />
+    <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\InputComponent.h" />
+    <ClInclude Include="Source\Laser.h" />
+    <ClInclude Include="Source\Math.h" />
+    <ClInclude Include="Source\MoveComponent.h" />
+    <ClInclude Include="Source\Random.h" />
+    <ClInclude Include="Source\Ship.h" />
+    <ClInclude Include="Source\SpriteComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

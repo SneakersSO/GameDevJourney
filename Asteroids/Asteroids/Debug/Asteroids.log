@@ -1,10 +1,9 @@
 ﻿  Actor.cpp
-  AnimSpriteComponent.cpp
-  BGSpriteComponent.cpp
-  Component.cpp
+  Asteroid.cpp
+  CircleComponent.cpp
   Game.cpp
+  Laser.cpp
   Main.cpp
-  Math.cpp
   Ship.cpp
   SpriteComponent.cpp
   Generating Code...

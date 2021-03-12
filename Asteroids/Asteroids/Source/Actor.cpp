@@ -78,3 +78,22 @@ void Actor::RemoveComponent(class Component* component)
 		mComponents.erase(iter);
 	}
 }
+
+void Actor::ProcessInput(const uint8_t* keyState)
+{
+	if (mState == EActive)
+	{
+		for (auto comp : mComponents)
+		{
+			comp->ProcessInput(keyState);
+
+		}
+
+		ActorInput(keyState);
+	}
+}
+
+void Actor::ActorInput(const uint8_t* keyState)
+{
+
+}

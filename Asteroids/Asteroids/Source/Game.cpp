@@ -5,8 +5,9 @@
 #include <algorithm>
 #include "Ship.h"
 #include "SpriteComponent.h"
-#include "BGSpriteComponent.h"
 #include "Math.h"
+#include "Asteroid.h"
+#include "Random.h"
 
 
 Game::Game()
@@ -29,7 +30,7 @@ bool Game::Initialize()
 	}
 
 	mWindow = SDL_CreateWindow( 
-		"Game Programming in C++ (Chapter 2)", // Window Title
+		"Asteroids", // Window Title
 		100, //Top left x-coordinate of window
 		100, //Top left y-coordinate of window
 		1024, // Width of window
@@ -63,6 +64,8 @@ bool Game::Initialize()
 
 		return false;
 	}
+
+	Random::Init();
 
 	LoadData();
 
@@ -172,14 +175,20 @@ void Game::ProcessInput()
 		}
 	}
 
-	const Uint8* state = SDL_GetKeyboardState(NULL);
-	if (state[SDL_SCANCODE_ESCAPE])
+	const Uint8* keyState = SDL_GetKeyboardState(NULL);
+	if (keyState[SDL_SCANCODE_ESCAPE])
 	{
 		mIsRunning = false;
 	}
 
-	//Process ship input
-	mShip->ProcessKeyboard(state);
+	mUpdatingActors = true;
+	
+	for (auto actor : mActors)
+	{
+		actor->ProcessInput(keyState);
+	}
+
+	mUpdatingActors = false;
 }
 
 void Game::UpdateGame()
@@ -235,7 +244,7 @@ void Game::UpdateGame()
 
 void Game::GenerateOutput()
 {
-	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(mRenderer, 220, 220, 220, 255);
 	SDL_RenderClear(mRenderer);
 
 	// Draw all sprite components
@@ -252,32 +261,15 @@ void Game::LoadData()
 	// Create player's ship
 	mShip = new Ship(this);
 	mShip->SetPosition(Vector2(100.0f, 384.0f));
-	mShip->SetScale(1.5f);
+	mShip->SetRot(Math::PiOver2);
+	mShip->SetScale(1.0f);
 
-	// Create actor for the background (this doesn't need a subclass)
-	Actor* temp = new Actor(this);
-	temp->SetPosition(Vector2(512.0f, 384.0f));
-
-	// Create the "far back" background
-	BGSpriteComponent* bg = new BGSpriteComponent(temp);
-	bg->SetScreenSize(Vector2(1024.0f, 768.0f));
-
-	std::vector<SDL_Texture*> bgtexs = {
-		GetTexture("Assets/Farback01.png"),
-		GetTexture("Assets/Farback02.png")
-	};
-	bg->SetBGTextures(bgtexs);
-	bg->SetScrollSpeed(-100.0f);
-
-	//Create the closer background
-	bg = new BGSpriteComponent(temp, 50);
-	bg->SetScreenSize(Vector2(1024.0f, 768.0f));
-	bgtexs = {
-		GetTexture("Assets/Stars.png"),
-		GetTexture("Assets/Stars.png")
-	};
-	bg->SetBGTextures(bgtexs);
-	bg->SetScrollSpeed(-200.0f);
+	//Create Asteroids
+	const int numAsteroids = 20;
+	for (int i = 0; i < numAsteroids; i++)
+	{
+		new Asteroid(this);
+	}
 
 }
 
@@ -316,7 +308,7 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 
 		if (!surf)
 		{
-			SDL_Log("Failed to load texture file %s", fileName);
+			SDL_Log("Failed to load texture file %s", fileName.c_str());
 			return nullptr;
 		}
 
@@ -325,7 +317,7 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 		SDL_FreeSurface(surf);
 		if (!tex)
 		{
-			SDL_Log("Failed to convert surface to texture for %s", fileName);
+			SDL_Log("Failed to convert surface to texture for %s", fileName.c_str());
 			return nullptr;
 		}
 
@@ -334,4 +326,19 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 	
 
 	return tex;
+}
+
+void Game::AddAsteroid(Asteroid* ast)
+{
+	mAsteroids.emplace_back(ast);
+}
+
+void Game::RemoveAsteroid(Asteroid* ast)
+{
+	auto iter = std::find(mAsteroids.begin(), mAsteroids.end(), ast);
+
+	if (iter != mAsteroids.end())
+	{
+		mAsteroids.erase(iter);
+	}
 }
