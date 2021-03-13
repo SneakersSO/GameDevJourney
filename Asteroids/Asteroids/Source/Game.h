@@ -68,7 +68,11 @@ private:
 	bool mUpdatingActors;
 
 	// Game-specific
-	class Ship* mShip;  // Player's ship\
+	class Ship* mShip;  // Player's ship
+
+	float mDeathCooldown;
+
+	bool mIsDead;
 	
 	std::vector<class Asteroid*> mAsteroids;
 };

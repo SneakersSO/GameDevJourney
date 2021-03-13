@@ -5,11 +5,12 @@
 #include "InputComponent.h"
 #include "CircleComponent.h"
 #include "Laser.h"
+#include "Asteroid.h"
 
 Ship::Ship(Game* game)
 	:Actor(game)
 {
-	SpriteComponent* sc = new SpriteComponent(this, 150);
+	sc = new SpriteComponent(this, 150);
 
 	sc->SetTexture(game->GetTexture("Assets/Ship.png"));
 
@@ -29,6 +30,15 @@ Ship::Ship(Game* game)
 void Ship::UpdateActor(float deltaTime)
 {
 	mLaserCooldown -= deltaTime;
+
+	//Does the ship collide with a asteroid?
+	for (auto ast : GetGame()->GetAsteroids())
+	{
+		if (Intersect(*mCircle, *(ast->GetCircle())))
+		{
+			SetState(EDead);
+		}
+	}
 }
 
 void Ship::ActorInput(const uint8_t* keyState)

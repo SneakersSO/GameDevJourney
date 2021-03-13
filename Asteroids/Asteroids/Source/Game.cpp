@@ -9,6 +9,7 @@
 #include "Asteroid.h"
 #include "Random.h"
 #include <iostream>
+#include <typeinfo>
 
 
 Game::Game()
@@ -16,6 +17,8 @@ Game::Game()
 	, mRenderer(nullptr)
 	, mIsRunning(true)
 	, mUpdatingActors(false)
+	, mIsDead(false)
+	, mDeathCooldown(1.5f)
 {
 
 }
@@ -73,7 +76,6 @@ bool Game::Initialize()
 	mTicksCount = SDL_GetTicks();
 
 	float angle = Math::Atan2(0.1644f, 0.9864f);
-	std::cout << angle;
 
 	return true;
 }
@@ -237,12 +239,35 @@ void Game::UpdateGame()
 		if (actor->GetState() == Actor::EDead)
 		{
 			deadActors.emplace_back(actor);
+			std::string className = typeid(*(actor)).name();
+
+			if (className == "class Ship")
+			{
+				mIsDead = true;
+			}
 		}
 	}
 
 	for (auto actor : deadActors)
 	{
 		delete actor;
+	}
+
+	if (mIsDead)
+	{
+		mDeathCooldown -= deltaTime;
+	}
+
+	if (mDeathCooldown <= 0.0f)
+	{
+		mIsDead = false;
+
+		mShip = new Ship(this);
+		mShip->SetPosition(Vector2(512.0f, 384.0f));
+		mShip->SetRot(0.0f);
+		mShip->SetScale(1.0f);
+
+		mDeathCooldown = 1.5f;
 	}
 }
 
