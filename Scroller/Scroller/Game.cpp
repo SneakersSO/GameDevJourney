@@ -31,7 +31,7 @@ bool Game::Initialize()
 	}
 
 	mWindow = SDL_CreateWindow( 
-		"Game Programming in C++ (Chapter 2)", // Window Title
+		"Texture Mapper", // Window Title
 		100, //Top left x-coordinate of window
 		100, //Top left y-coordinate of window
 		1024, // Width of window
