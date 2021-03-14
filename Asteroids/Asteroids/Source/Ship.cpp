@@ -9,6 +9,7 @@
 
 Ship::Ship(Game* game)
 	:Actor(game)
+	,mLaserCooldown(0.5f)
 {
 	sc = new SpriteComponent(this, 150);
 
@@ -18,6 +19,7 @@ Ship::Ship(Game* game)
 
 	ip->SetMaxForwardSpeed(300.0f);
 	ip->SetMaxAngularSpeed(Math::TwoPi);
+
 	ip->SetForwardKey(SDL_SCANCODE_W);
 	ip->SetBackKey(SDL_SCANCODE_S);
 	ip->SetClockwiseKey(SDL_SCANCODE_D);
@@ -25,6 +27,9 @@ Ship::Ship(Game* game)
 
 	mCircle = new CircleComponent(this);
 	mCircle->SetRadius(42.0f);
+
+	ip->SetMass(250.f);
+
 }
 
 void Ship::UpdateActor(float deltaTime)

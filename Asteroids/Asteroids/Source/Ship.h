@@ -13,5 +13,6 @@ private:
 	float mLaserCooldown;
 	class CircleComponent* mCircle;
 	class SpriteComponent* sc;
+
 };
 
