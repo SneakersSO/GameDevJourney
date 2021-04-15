@@ -30,13 +30,13 @@ public:
 	virtual void UpdateActor(float deltaTime);
 
 	// Getters/setters
-	State GetState() { return mState; };
+	State GetState() { return mState; }
 	void SetState(State state) { mState = state; }
 
 	const Vector2& GetPosition() { return mPosition; };
 	void SetPosition(const Vector2& pos) { mPosition = pos; }
 
-	float GetScale() { return mScale; };
+	float GetScale() const { return mScale; };
 	void SetScale(float scale) { mScale = scale; }
 
 	float GetRot() { return mRotation; };

@@ -1,1 +1,8 @@
-﻿
+﻿  Enemy.cpp
+  NavComponent.cpp
+C:\Users\nevet\Documents\Programming\GameDevJourney\TowerD\TowerD\Source\NavComponent.cpp(20,38): error C2440: '=': cannot convert from 'const Tile *' to 'Tile *'
+C:\Users\nevet\Documents\Programming\GameDevJourney\TowerD\TowerD\Source\NavComponent.cpp(20,36): message : Conversion loses qualifiers
+C:\Users\nevet\Documents\Programming\GameDevJourney\TowerD\TowerD\Source\NavComponent.cpp(43,32): error C2440: '=': cannot convert from 'const Tile *' to 'Tile *'
+C:\Users\nevet\Documents\Programming\GameDevJourney\TowerD\TowerD\Source\NavComponent.cpp(43,30): message : Conversion loses qualifiers
+  Tile.cpp
+  Generating Code...

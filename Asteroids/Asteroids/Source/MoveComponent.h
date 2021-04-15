@@ -1,11 +1,8 @@
 #pragma once
 #include "Component.h"
 #include "Math.h"
+#include <vector>
 
-struct Force {
-	Vector2 magnitude;
-	Vector2 direction;
-};
 
 class MoveComponent : public Component
 {
@@ -26,9 +23,6 @@ public:
 	float GetMass() { return mMass; }
 	void SetMass(float mass) { mMass = mass; }
 
-	void AddForce(Force force) { mSumOfForces += force; }
-
-
 private:
 	// Controls rotations (radians/second)
 
@@ -40,7 +34,7 @@ private:
 
 	float mMass;
 	Vector2 mVelocity;
-	Force mSumOfForces;
+
 };
 
 

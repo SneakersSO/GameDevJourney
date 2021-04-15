@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -142,29 +142,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Actor.h" />
-    <ClInclude Include="AIComponent.h" />
-    <ClInclude Include="CircleComponent.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="InputComponent.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="MoveComponent.h" />
-    <ClInclude Include="Random.h" />
-    <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="Source\AIComponent.h" />
+    <ClInclude Include="Source\Actor.h" />
+    <ClInclude Include="Source\AIState.h" />
+    <ClInclude Include="Source\Bullet.h" />
+    <ClInclude Include="Source\CircleComponent.h" />
+    <ClInclude Include="Source\Component.h" />
+    <ClInclude Include="Source\Enemy.h" />
+    <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\Grid.h" />
+    <ClInclude Include="Source\InputComponent.h" />
+    <ClInclude Include="Source\Math.h" />
+    <ClInclude Include="Source\MoveComponent.h" />
+    <ClInclude Include="Source\NavComponent.h" />
+    <ClInclude Include="Source\Random.h" />
+    <ClInclude Include="Source\SpriteComponent.h" />
+    <ClInclude Include="Source\Tile.h" />
+    <ClInclude Include="Source\Tower.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="AIComponent.cpp" />
-    <ClCompile Include="CircleComponent.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="InputComponent.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Math.cpp" />
-    <ClCompile Include="MoveComponent.cpp" />
-    <ClCompile Include="Random.cpp" />
-    <ClCompile Include="SpriteComponent.cpp" />
+    <ClCompile Include="Source\AIComponent.cpp" />
+    <ClCompile Include="Source\Actor.cpp" />
+    <ClCompile Include="Source\AIState.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\CircleComponent.cpp" />
+    <ClCompile Include="Source\Component.cpp" />
+    <ClCompile Include="Source\Enemy.cpp" />
+    <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Grid.cpp" />
+    <ClCompile Include="Source\InputComponent.cpp" />
+    <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Math.cpp" />
+    <ClCompile Include="Source\MoveComponent.cpp" />
+    <ClCompile Include="Source\NavComponent.cpp" />
+    <ClCompile Include="Source\Random.cpp" />
+    <ClCompile Include="Source\Search.cpp" />
+    <ClCompile Include="Source\SpriteComponent.cpp" />
+    <ClCompile Include="Source\Tile.cpp" />
+    <ClCompile Include="Source\Tower.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

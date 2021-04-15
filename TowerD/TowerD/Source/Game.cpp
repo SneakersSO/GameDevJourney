@@ -3,22 +3,19 @@
 #include "Actor.h"
 #include "SDL_image.h"
 #include <algorithm>
-#include "Ship.h"
 #include "SpriteComponent.h"
 #include "Math.h"
-#include "Asteroid.h"
 #include "Random.h"
-#include <iostream>
-#include <typeinfo>
-
+#include "AIComponent.h"
+#include "AIState.h"
+#include "Enemy.h"
+#include "Grid.h"
 
 Game::Game()
 	:mWindow(nullptr)
 	, mRenderer(nullptr)
 	, mIsRunning(true)
 	, mUpdatingActors(false)
-	, mIsDead(false)
-	, mDeathCooldown(1.5f)
 {
 
 }
@@ -29,12 +26,11 @@ bool Game::Initialize()
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0)
 	{
 		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
-
 		return false;
 	}
 
 	mWindow = SDL_CreateWindow( 
-		"Asteroids", // Window Title
+		"TowerD", // Window Title
 		100, //Top left x-coordinate of window
 		100, //Top left y-coordinate of window
 		1024, // Width of window
@@ -45,7 +41,6 @@ bool Game::Initialize()
 	if (!mWindow)
 	{
 		SDL_Log("Failed to create window: %s", SDL_GetError());
-
 		return false;
 	}
 
@@ -58,14 +53,12 @@ bool Game::Initialize()
 	if (!mRenderer)
 	{
 		SDL_Log("Failed to Create Renderer: %s", SDL_GetError());
-
 		return false;
 	}
 
 	if (IMG_Init(IMG_INIT_PNG) == 0)
 	{
 		SDL_Log("Unable to initialize SDL_image: %s", SDL_GetError());
-
 		return false;
 	}
 
@@ -74,8 +67,6 @@ bool Game::Initialize()
 	LoadData();
 
 	mTicksCount = SDL_GetTicks();
-
-	float angle = Math::Atan2(0.1644f, 0.9864f);
 
 	return true;
 }
@@ -161,9 +152,7 @@ void Game::RunLoop()
 	while (mIsRunning)
 	{
 		ProcessInput();
-
 		UpdateGame();
-
 		GenerateOutput();
 	}
 }
@@ -187,8 +176,20 @@ void Game::ProcessInput()
 		mIsRunning = false;
 	}
 
+	if (keyState[SDL_SCANCODE_B])
+	{
+		mGrid->BuildTower();
+	}
+
+	//Process Mouse
+	int x, y;
+	Uint32 buttons = SDL_GetMouseState(&x, &y);
+	if (SDL_BUTTON(buttons) & SDL_BUTTON_LEFT)
+	{
+		mGrid->ProcessClick(x, y);
+	}
+
 	mUpdatingActors = true;
-	
 	for (auto actor : mActors)
 	{
 		actor->ProcessInput(keyState);
@@ -239,12 +240,6 @@ void Game::UpdateGame()
 		if (actor->GetState() == Actor::EDead)
 		{
 			deadActors.emplace_back(actor);
-			std::string className = typeid(*(actor)).name();
-
-			if (className == "class Ship")
-			{
-				mIsDead = true;
-			}
 		}
 	}
 
@@ -253,22 +248,6 @@ void Game::UpdateGame()
 		delete actor;
 	}
 
-	if (mIsDead)
-	{
-		mDeathCooldown -= deltaTime;
-	}
-
-	if (mDeathCooldown <= 0.0f)
-	{
-		mIsDead = false;
-
-		mShip = new Ship(this);
-		mShip->SetPosition(Vector2(512.0f, 384.0f));
-		mShip->SetRot(0.0f);
-		mShip->SetScale(1.0f);
-
-		mDeathCooldown = 1.5f;
-	}
 }
 
 void Game::GenerateOutput()
@@ -287,19 +266,17 @@ void Game::GenerateOutput()
 
 void Game::LoadData()
 {
-	// Create player's ship
-	mShip = new Ship(this);
-	mShip->SetPosition(Vector2(100.0f, 384.0f));
-	mShip->SetRot(Math::PiOver2);
-	mShip->SetScale(1.0f);
+	mGrid = new Grid(this);
 
-	//Create Asteroids
-	const int numAsteroids = 20;
-	for (int i = 0; i < numAsteroids; i++)
-	{
-		new Asteroid(this);
-	}
-
+	// For testing AIComponent
+	//Actor* a = new Actor(this);
+	//AIComponent* aic = new AIComponent(a);
+	//// Register states with AIComponent
+	//aic->RegisterState(new AIPatrol(aic));
+	//aic->RegisterState(new AIDeath(aic));
+	//aic->RegisterState(new AIAttack(aic));
+	//// Start in patrol state
+	//aic->ChangeState("Patrol");
 }
 
 void Game::UnloadData()
@@ -353,21 +330,28 @@ SDL_Texture* Game::GetTexture(const std::string& fileName)
 		mTextures.emplace(fileName.c_str(), tex);
 	}
 	
-
 	return tex;
 }
 
-void Game::AddAsteroid(Asteroid* ast)
+Enemy* Game::GetNearestEnemy(const Vector2& pos)
 {
-	mAsteroids.emplace_back(ast);
-}
+	Enemy* best = nullptr;
 
-void Game::RemoveAsteroid(Asteroid* ast)
-{
-	auto iter = std::find(mAsteroids.begin(), mAsteroids.end(), ast);
-
-	if (iter != mAsteroids.end())
+	if (mEnemies.size() > 0)
 	{
-		mAsteroids.erase(iter);
+		best = mEnemies[0];
+		// Save the distance squared of first enemy, and test if others are closer
+		float bestDistSq = (pos - mEnemies[0]->GetPosition()).LengthSq();
+		for (size_t i = 1; i < mEnemies.size(); i++)
+		{
+			float newDistSq = (pos - mEnemies[i]->GetPosition()).LengthSq();
+			if (newDistSq < bestDistSq)
+			{
+				bestDistSq = newDistSq;
+				best = mEnemies[i];
+			}
+		}
 	}
+
+	return best;
 }

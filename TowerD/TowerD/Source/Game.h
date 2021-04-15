@@ -3,6 +3,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include "Math.h"
 
 class Game
 {
@@ -27,12 +28,12 @@ public:
 	void AddSprite(class SpriteComponent* sprite);
 	void RemoveSprite(class SpriteComponent* sprite);
 
-	std::vector<class Asteroid*> GetAsteroids() { return mAsteroids; }
-
-	void AddAsteroid(Asteroid* ast);
-	void RemoveAsteroid(Asteroid* ast);
 
 	SDL_Texture* GetTexture(const std::string& fileName);
+
+	class Grid* GetGrid() { return mGrid; }
+	std::vector<class Enemy*>& GetEnemies() { return mEnemies; }
+	class Enemy* GetNearestEnemy(const Vector2& pos);
 
 private:
 	//Helper functions for the game loop
@@ -67,12 +68,8 @@ private:
 	// Track of we're updating actors right now
 	bool mUpdatingActors;
 
-	// Game-specific
-	class Ship* mShip;  // Player's ship
-
-	float mDeathCooldown;
-
-	bool mIsDead;
-	
-	std::vector<class Asteroid*> mAsteroids;
+	// Game specific
+	std::vector<class Enemy*> mEnemies;
+	class Grid* mGrid;
+	float mNextEnemy;
 };

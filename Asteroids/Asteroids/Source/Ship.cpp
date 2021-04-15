@@ -17,18 +17,17 @@ Ship::Ship(Game* game)
 
 	InputComponent* ip = new InputComponent(this);
 
-	ip->SetMaxForwardSpeed(300.0f);
+	ip->SetMaxForwardSpeed(50.f);
 	ip->SetMaxAngularSpeed(Math::TwoPi);
 
 	ip->SetForwardKey(SDL_SCANCODE_W);
 	ip->SetBackKey(SDL_SCANCODE_S);
 	ip->SetClockwiseKey(SDL_SCANCODE_D);
 	ip->SetCounterClockwiseKey(SDL_SCANCODE_A);
+	ip->SetMass(.5f);
 
 	mCircle = new CircleComponent(this);
 	mCircle->SetRadius(42.0f);
-
-	ip->SetMass(250.f);
 
 }
 

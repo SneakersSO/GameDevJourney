@@ -4,6 +4,7 @@
 
 CircleComponent::CircleComponent(Actor* owner)
 	:Component(owner)
+	, mRadius(0.0f)
 {
 
 }

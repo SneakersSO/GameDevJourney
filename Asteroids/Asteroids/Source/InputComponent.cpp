@@ -14,6 +14,7 @@ void InputComponent::ProcessInput(const uint8_t* keyState)
 	if (keyState[mForwardKey])
 	{
 		forwardSpeed += mMaxForwardSpeed;
+
 	}
 
 	if (keyState[mBackKey])

@@ -27,7 +27,8 @@ Asteroid::Asteroid(class Game* game)
 
 	MoveComponent* mc = new MoveComponent(this);
 
-	mc->SetForwardSpeed(150.0f);
+	mc->SetForwardSpeed(300.0f);
+	mc->SetMass(1.0f);
 
 	// Create a circle component & set radius
 	mCircle = new CircleComponent(this);
