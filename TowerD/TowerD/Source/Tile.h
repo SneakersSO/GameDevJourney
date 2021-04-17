@@ -13,9 +13,9 @@ public:
 		EStart,
 		EBase
 	};
-
+	
 	Tile(class Game* game);
-
+	
 	void SetTileState(TileState state);
 	TileState GetTileState() const { return mTileState; }
 	void ToggleSelect();
@@ -30,7 +30,7 @@ private:
 	bool mInOpenSet;
 	bool mInClosedSet;
 	bool mBlocked;
-
+	
 	void UpdateTexture();
 	class SpriteComponent* mSprite;
 	TileState mTileState;

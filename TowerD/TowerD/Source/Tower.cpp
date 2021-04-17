@@ -25,22 +25,19 @@ void Tower::UpdateActor(float deltaTime)
 	if (mNextAttack <= 0.0f)
 	{
 		Enemy* e = GetGame()->GetNearestEnemy(GetPosition());
-
 		if (e != nullptr)
 		{
-			//Vector from me to enemy
+			// Vector from me to enemy
 			Vector2 dir = e->GetPosition() - GetPosition();
 			float dist = dir.Length();
-
 			if (dist < AttackRange)
 			{
 				// Rotate to face enemy
-				SetRot(Math::Atan2(-dir.y, dir.x));
-
+				SetRotation(Math::Atan2(-dir.y, dir.x));
 				// Spawn bullet at tower position facing enemy
 				Bullet* b = new Bullet(GetGame());
 				b->SetPosition(GetPosition());
-				b->SetRot(GetRot());
+				b->SetRotation(GetRotation());
 			}
 		}
 		mNextAttack += AttackTime;

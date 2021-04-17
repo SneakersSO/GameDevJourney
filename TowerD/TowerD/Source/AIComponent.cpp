@@ -3,11 +3,10 @@
 #include "AIState.h"
 #include "SDL_log.h"
 
-AIComponent::AIComponent(Actor* owner)
+AIComponent::AIComponent(class Actor* owner)
 	:Component(owner)
-	,mCurrentState(nullptr)
+	, mCurrentState(nullptr)
 {
-
 }
 
 void AIComponent::Update(float deltaTime)
@@ -34,7 +33,6 @@ void AIComponent::ChangeState(const std::string& name)
 		// We're entering the new state
 		mCurrentState->OnEnter();
 	}
-
 	else
 	{
 		SDL_Log("Could not find AIState %s in state map", name.c_str());

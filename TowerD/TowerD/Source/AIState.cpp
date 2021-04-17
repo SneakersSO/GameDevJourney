@@ -1,5 +1,3 @@
-#pragma once
-
 #include "AIState.h"
 #include "AIComponent.h"
 #include <SDL_log.h>

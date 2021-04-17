@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Bullet.h"
 #include "SpriteComponent.h"
 #include "MoveComponent.h"
@@ -31,7 +29,7 @@ void Bullet::UpdateActor(float deltaTime)
 	{
 		if (Intersect(*mCircle, *(e->GetCircle())))
 		{
-			//We both die on collision
+			// We both die on collision
 			e->SetState(EDead);
 			SetState(EDead);
 			break;
@@ -41,6 +39,7 @@ void Bullet::UpdateActor(float deltaTime)
 	mLiveTime -= deltaTime;
 	if (mLiveTime <= 0.0f)
 	{
+		// Time limit hit, die
 		SetState(EDead);
 	}
 }

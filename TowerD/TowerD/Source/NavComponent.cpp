@@ -8,7 +8,6 @@ NavComponent::NavComponent(class Actor* owner, int updateOrder)
 
 }
 
-
 void NavComponent::Update(float deltaTime)
 {
 	if (mNextNode)
@@ -25,21 +24,18 @@ void NavComponent::Update(float deltaTime)
 	MoveComponent::Update(deltaTime);
 }
 
-void NavComponent::TurnTo(const Vector2& pos)
-{
-	//Vector from me to pos
-	Vector2 dir = pos - mOwner->GetPosition();
-
-	//New angle is just atan2 of this dir vector
-	// (Negate y because +y is down on screen
-
-	float angle = Math::Atan2(-dir.y, dir.x);
-
-	mOwner->SetRot(angle);
-}
-
 void NavComponent::StartPath(const Tile* start)
 {
 	mNextNode = start->GetParent();
 	TurnTo(mNextNode->GetPosition());
+}
+
+void NavComponent::TurnTo(const Vector2& pos)
+{
+	// Vector from me to pos
+	Vector2 dir = pos - mOwner->GetPosition();
+	// New angle is just atan2 of this dir vector
+	// (Negate y because +y is down on screen)
+	float angle = Math::Atan2(-dir.y, dir.x);
+	mOwner->SetRotation(angle);
 }

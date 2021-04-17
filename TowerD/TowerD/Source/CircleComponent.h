@@ -11,7 +11,6 @@ public:
 	float GetRadius() const;
 
 	const Vector2& GetCenter() const;
-
 private:
 	float mRadius;
 };

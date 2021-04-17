@@ -6,7 +6,6 @@ class Tower : public Actor
 public:
 	Tower(class Game* game);
 	void UpdateActor(float deltaTime) override;
-
 private:
 	class MoveComponent* mMove;
 	float mNextAttack;

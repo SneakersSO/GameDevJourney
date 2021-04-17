@@ -10,13 +10,10 @@ public:
 	virtual void Update(float deltaTime) = 0;
 	virtual void OnEnter() = 0;
 	virtual void OnExit() = 0;
-	
 	// Getter for string name of state
 	virtual const char* GetName() const = 0;
-
 protected:
 	class AIComponent* mOwner;
-
 };
 
 class AIPatrol : public AIState
@@ -27,7 +24,6 @@ public:
 	{ }
 
 	// Override with behaviors for this state
-
 	void Update(float deltaTime) override;
 	void OnEnter() override;
 	void OnExit() override;
