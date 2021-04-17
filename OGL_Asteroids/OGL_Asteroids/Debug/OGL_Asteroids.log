@@ -1,0 +1,17 @@
+﻿  Actor.cpp
+  AnimSpriteComponent.cpp
+  Asteroid.cpp
+  BGSpriteComponent.cpp
+  CircleComponent.cpp
+  Component.cpp
+  Game.cpp
+  InputComponent.cpp
+  Laser.cpp
+  Main.cpp
+  Math.cpp
+  MoveComponent.cpp
+  Random.cpp
+  Ship.cpp
+  SpriteComponent.cpp
+  Generating Code...
+  OGL_Asteroids.vcxproj -> C:\Users\nevet\Documents\Programming\GameDevJourney\OGL_Asteroids\Debug\OGL_Asteroids.exe
