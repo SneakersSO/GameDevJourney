@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\nevet\Documents\Programming\SDL2-2.0.14\include;C:\Users\nevet\Documents\Programming\SDL2_image-2.0.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\nevet\Documents\Programming\SDL2-2.0.14\lib\x86;C:\Users\nevet\Documents\Programming\SDL2-2.0.14\lib\x64;C:\Users\nevet\Documents\Programming\SDL2_image-2.0.5\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\nevet\Documents\Programming\SDL2-2.0.14\include;C:\Users\nevet\Documents\Programming\SDL2_image-2.0.5\include;$(ProjectDir)\SDL2-2.0.14\include;$(ProjectDir)\SDL2-2.0.14\SDL2_image-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\nevet\Documents\Programming\SDL2-2.0.14\lib\x86;C:\Users\nevet\Documents\Programming\SDL2-2.0.14\lib\x64;C:\Users\nevet\Documents\Programming\SDL2_image-2.0.5\lib\x86;$(ProjectDir)SDL2-2.0.14\lib\x86;$(ProjectDir)SDL2-2.0.14\lib\x64;$(ProjectDir)SDL2-2.0.14\SDL2_image-2.0.5;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -1,5 +1,12 @@
-﻿  Game.cpp
+﻿  Actor.cpp
+  AnimSpriteComponent.cpp
+  BGSpriteComponent.cpp
+  Game.cpp
   Main.cpp
+  tinyxml2.cpp
+  Ship.cpp
+  Skeleton.cpp
+  SpriteComponent.cpp
   TileMapComponent.cpp
 C:\Users\nevet\Documents\Programming\GameDevJourney\Scroller\Scroller\TileMapComponent.cpp(70,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\Users\nevet\Documents\Programming\GameDevJourney\Scroller\Scroller\TileMapComponent.cpp(77,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
