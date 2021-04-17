@@ -1,5 +1,3 @@
-#pragma once
-
 #include "Actor.h"
 #include "Game.h"
 #include "Component.h"

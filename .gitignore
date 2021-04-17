@@ -39,6 +39,7 @@ Asteroids/.vs/Asteroids/v16/.suo
 Asteroids/.vs/Asteroids/v16/Browse.VC.db
 Asteroids/.vs/Asteroids/v16/Browse.VC.db-shm
 Asteroids/.vs/Asteroids/v16/Browse.VC.db-wal
+<<<<<<< Updated upstream
 Asteroids/.vs/Asteroids/v16/Browse.VC.opendb
 *.ipch
 Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/c5f627f5e242c5df/ACTOR.ipch
@@ -89,3 +90,25 @@ TowerD/.vs/TowerD/v16/Browse.VC.db
 TowerD/.vs/TowerD/v16/Browse.VC.db-shm
 TowerD/.vs/TowerD/v16/Browse.VC.db-wal
 TowerD/.vs/TowerD/v16/Browse.VC.opendb
+=======
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/1746c76a679c46c1/RANDOM.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/1e8491133f40f81d/MOVECOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/28dc54c2d1ff14b3/INPUTCOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/36c3539fee60650b/GAME.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/398a8409562a6768/ASTEROID.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/4b6f08d85330b862/LASER.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/5475915a38574019/SPRITECOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/63407c64d5c2114/MOVECOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/783fe828b97d1e3c/LASER.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/9c0f1946ed7646d7/LASER.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/9d71a54f2f1f1823/SHIP.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/ad1023845614f8bf/CIRCLECOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/b56afa357b8c5a54/ACTOR.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/c1360c6725dc88ce/INPUTCOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/daaded1fc2c6172b/RANDOM.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/e27ad1b08079d2da/CIRCLECOMPONENT.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/e4524f7ff35f0269/ASTEROID.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/ed41e57e3b7f6f6/RANDOM.ipch
+Asteroids/.vs/Asteroids/v16/ipch/AutoPCH/f292ed57701fc0b2/COMPONENT.ipch
+*.ipch
+>>>>>>> Stashed changes
